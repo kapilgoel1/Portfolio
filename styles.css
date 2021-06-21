@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
+
+:root {
+  --background: #232946;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto;
+  font-weight: 400;
+}
+
+/* navigation styles start here */
+
+header {
+  background: var(--background);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+/* changed this from the tutorial video to
+   allow it to gain focus, making it tabbable */
+.nav-toggle {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+.nav-toggle:focus ~ .nav-toggle-label {
+  outline: 3px solid rgba(lightblue, 0.75);
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background: var(--background);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1, 1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+.logo {
+  font-family: 'Allura', cursive;
+  color: #eebbc3;
+}
+
+.logo-down {
+  font-family: 'Allura', cursive;
+  color: #232946;
+}
+
+@media screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+  }
+
+  .logo {
+    grid-column: 2 / 3;
+  }
+
+  nav {
+    all: unset; /* this causes issues with Edge, since it's unsupported */
+
+    /* the following lines are not from my video, but add Edge support */
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1, 1);
+    background: none;
+    top: initial;
+    left: initial;
+    /* end Edge support stuff */
+
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: -0.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    transform: scale(1, 1);
+  }
+}
+
+.scroll {
+  background: #eebbc3;
+  color: #232946;
+}
+
+.navbar-down {
+  color: #232946;
+}
+
+.hero {
+  padding: 10rem 5rem;
+  text-align: center;
+
+  background: #232946;
+}
+
+.headline {
+  font-family: Alfa Slab One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  color: #fffffe;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+.headline span {
+  display: block;
+}
+
+.hero__desc {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  color: #b8c1ec;
+  margin-top: 1rem;
+}
+
+.getintouch {
+  display: block;
+  text-decoration: none;
+  width: 20rem;
+  height: 3.5rem;
+  background: #eebbc3;
+  font-weight: bold;
+  font-size: 2.2rem;
+  text-align: center;
+  color: #232946;
+  line-height: 3.5rem;
+  margin: 0 auto;
+}
+
+.hero__image {
+  display: none;
+}
+
+.aboutme {
+  padding: 3rem;
+  text-align: center;
+}
+
+.aboutme__heading {
+  font-family: Alfa Slab One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3.1rem;
+
+  color: #121629;
+}
+
+.aboutme__image {
+  background-image: url('/assets/photo4.jpg');
+  height: 480px;
+  background-repeat: no-repeat;
+  width: 400px;
+  margin: auto;
+  background-position: 30% 0%;
+}
+
+.aboutme__para {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2rem;
+
+  color: #121629;
+}
+
+.projects {
+  background-color: #232946;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.projects > p {
+  font-family: Alfa Slab One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  text-align: center;
+  color: #fffffe;
+  padding-bottom: 1.5rem;
+}
+
+.project-images {
+  display: flex;
+  justify-content: center;
+}
+
+.project__description-container {
+  background-color: #ffffff;
+  max-width: 50rem;
+  border-radius: 1.5rem;
+  margin: 1rem auto;
+  padding: 2rem 1rem;
+}
+
+.seelive {
+  display: block;
+  text-decoration: none;
+  width: 20rem;
+  height: 2.5rem;
+  background: #232946;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #eebbc3;
+  line-height: 2.5rem;
+  margin: 0 auto;
+}
+
+.seelive > p {
+  margin: 0;
+}
+
+.sourcecode {
+  display: block;
+  text-decoration: none;
+  width: 20rem;
+  height: 2.5rem;
+  background: #232946;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #b8c1ec;
+  line-height: 2.5rem;
+  margin: 0 auto;
+}
+
+.sourcecode > p {
+  margin: 0;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  color: #232946;
+  margin-top: 0;
+}
+
+.project-description {
+  font-size: 1rem;
+  line-height: 1.7rem;
+
+  color: #232946;
+}
+
+.project-buttons {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.project-container {
+  padding-bottom: 2.5rem;
+}
+
+.contact-section {
+  background-color: #232946;
+  padding-top: 9rem;
+  padding-bottom: 7rem;
+}
+
+.contact-links-group {
+  max-width: 20rem;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.contact-links-group img {
+  height: 3rem;
+}
+
+@media only screen and (min-width: 1200px) {
+  .hero {
+    display: flex;
+    text-align: left;
+  }
+
+  .getintouch {
+    margin: 0 0;
+  }
+
+  .hero__left {
+    padding-right: 2rem;
+  }
+
+  .hero__image {
+    display: block;
+    padding-left: 2rem;
+  }
+
+  .hero__image img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .headline {
+    margin-top: 3rem;
+  }
+
+  .aboutme__container {
+    display: flex;
+  }
+  .aboutme__image {
+    flex: 1 1 50%;
+    background-position: 0% 0%;
+  }
+  .aboutme__para {
+    flex: 1 1 50%;
+    padding-left: 2rem;
+    text-align: left;
+  }
+  .project-container {
+    padding-left: 2rem;
+    padding-right: 1.8rem;
+    display: flex;
+    align-items: center;
+  }
+  .project-images {
+    width: 48%;
+  }
+  .project__description-container {
+    width: 48%;
+    text-align: left;
+  }
+  .seelive {
+    margin-right: 1rem;
+  }
+  .sourcecode {
+    margin-left: 1rem;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .project__description-container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
